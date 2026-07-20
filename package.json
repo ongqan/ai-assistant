@@ -1,0 +1,15 @@
+{
+  "name": "travelmate-ai",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npm --prefix web-demo start",
+    "test": "npm --prefix web-demo test",
+    "postinstall": "npm --prefix web-demo install --omit=dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

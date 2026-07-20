@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7f2" />
+  <title>旅伴 AI｜智能出行管家</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">✦</span>
+      <span><b>旅伴 AI</b><small>智能出行管家</small></span>
+    </a>
+    <nav><a href="#planner">智能规划</a><a href="#features">服务能力</a><button class="ghost-btn" id="savedBtn">♡ 我的行程</button></nav>
+  </header>
+
+  <main>
+    <section class="hero" id="planner">
+      <div class="eyebrow"><span></span> AI TRAVEL CONCIERGE</div>
+      <h1>一句话，开启你的<br><em>理想旅程</em></h1>
+      <p class="hero-copy">告诉我想去哪里、和谁同行。路线规划、行程安排和贴心服务，都交给我。</p>
+
+      <div class="chat-shell">
+        <div class="assistant-line"><span class="avatar">✦</span><div><b>你好，我是小旅</b><p>今天想去哪里走走？</p></div><span class="online" id="integrationStatus">● 检查 AI 服务</span></div>
+        <div class="input-row">
+          <textarea id="tripInput" rows="1" placeholder="例如：带爸妈去杭州玩3天，想看自然风景…"></textarea>
+          <button id="sendBtn" aria-label="生成行程"><span>生成行程</span><b>↑</b></button>
+        </div>
+        <div class="quick-prompts">
+          <button>带爸妈去杭州玩3天</button><button>情侣上海周末游</button><button>成都亲子4日游</button>
+        </div>
+      </div>
+      <div class="trust-row"><span>✓ 10 秒生成方案</span><span>✓ 随时修改行程</span><span>✓ 路线智能优化</span></div>
+    </section>
+
+    <section class="results hidden" id="results">
+      <div class="section-heading"><div><span class="overline">YOUR ITINERARY</span><h2>为你准备好了</h2></div><button class="outline-btn" id="newPlanBtn">＋ 重新规划</button></div>
+      <div class="intent-card">
+        <div class="intent-top"><div><span class="spark">✦</span><span><small>我理解你的需求是</small><b id="intentSummary">杭州 · 3天 · 家庭出行</b></span></div><span class="match">匹配度 96%</span></div>
+        <div class="intent-tags" id="intentTags"></div>
+      </div>
+
+      <div class="result-grid">
+        <div class="itinerary-panel">
+          <div class="panel-head"><div><span class="overline">ROUTE PLAN</span><h3>每日行程</h3></div><span class="route-badge">⌁ 动线已优化</span></div>
+          <div id="daysList" class="days-list"></div>
+        </div>
+        <aside class="route-aside">
+          <div class="map-card">
+            <div class="map-grid"></div><div class="river"></div>
+            <div class="pin p1">1</div><div class="pin p2">2</div><div class="pin p3">3</div>
+            <svg viewBox="0 0 400 260" preserveAspectRatio="none"><path d="M80,185 C120,110 185,170 212,92 S310,50 340,112"/></svg>
+            <div class="map-label">智能路线预览<small id="mapMeta">全程约 38 km</small></div>
+          </div>
+          <div class="tip-card"><span>☀</span><div><b>小旅贴士</b><p id="travelTip">西湖景区建议早上 9 点前抵达，人少景美。</p></div></div>
+        </aside>
+      </div>
+
+      <div class="services-section" id="features">
+        <div class="panel-head"><div><span class="overline">SELECTED FOR YOU</span><h3>旅途中可能需要</h3></div><p>根据行程为你智能匹配</p></div>
+        <div class="service-grid" id="serviceGrid"></div>
+      </div>
+      <div class="refine-bar hidden" id="refineBar">
+        <div><span class="mini-avatar">✦</span><span><b>继续和小旅调整</b><small>例如：第二天太赶了，换成轻松一点</small></span></div>
+        <div class="refine-input"><input id="refineInput" placeholder="告诉 AI 你想怎么改…"><button id="refineBtn">发送修改</button></div>
+      </div>
+      <div class="save-bar"><div><span class="mini-avatar">✦</span><span><b>这份行程合你心意吗？</b><small>保存后可随时查看和调整</small></span></div><button id="saveBtn">保存完整行程 <span>→</span></button></div>
+    </section>
+  </main>
+
+  <div class="loading-overlay hidden" id="loading"><div class="loader-mark">✦</div><h3>小旅正在规划…</h3><p id="loadingText">理解你的出行需求</p><div class="progress"><i></i></div></div>
+  <div class="toast" id="toast">行程已保存到「我的行程」</div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
