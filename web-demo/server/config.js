@@ -2,11 +2,11 @@ import 'dotenv/config';
 
 export const config = {
   port: Number(process.env.PORT || 8787),
-  aiProvider: process.env.AI_PROVIDER || (process.env.OPENAI_MODEL?.toLowerCase().startsWith('qwen') ? 'bailian' : 'mock'),
+  aiProvider: process.env.AI_PROVIDER || (/^(qwen|kimi[\/-])/.test(process.env.OPENAI_MODEL?.toLowerCase() || '') ? 'bailian' : 'mock'),
   openAiKey: process.env.OPENAI_API_KEY || '',
   openAiModel: process.env.OPENAI_MODEL || 'gpt-5-mini',
   bailianKey: process.env.BAILIAN_API_KEY || process.env.OPENAI_API_KEY || '',
-  bailianModel: process.env.BAILIAN_MODEL || process.env.OPENAI_MODEL || 'qwen-plus',
+  bailianModel: process.env.BAILIAN_MODEL || process.env.OPENAI_MODEL || 'kimi-k2.5',
   bailianBaseUrl: process.env.BAILIAN_BASE_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1',
   amapKey: process.env.AMAP_API_KEY || '',
   maxMessageLength: 2000
