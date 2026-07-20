@@ -31,7 +31,12 @@ app.use((error, req, res, _next) => {
 
 app.listen(config.port, () => {
   console.log(`旅伴 AI 已启动：http://localhost:${config.port}`);
-  console.log(`智能引擎：${config.aiProvider === 'mock' ? '本地演示模式（无需 Key）' : config.openAiKey ? `OpenAI (${config.openAiModel})` : '等待配置 OPENAI_API_KEY'}`);
+  const engine = config.aiProvider === 'mock'
+    ? '本地演示模式（无需 Key）'
+    : config.aiProvider === 'bailian'
+      ? `阿里云百炼 (${config.bailianModel})`
+      : config.openAiKey ? `OpenAI (${config.openAiModel})` : '等待配置 OPENAI_API_KEY';
+  console.log(`智能引擎：${engine}`);
   console.log(`真实地点：${config.amapKey ? '已接入高德地图' : '未配置（可选）'}`);
 });
 

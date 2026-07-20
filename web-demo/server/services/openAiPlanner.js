@@ -4,6 +4,7 @@ import { config } from '../config.js';
 import { travelPlanSchema } from '../schemas/travelPlan.js';
 import { createPlanPrompt, TRAVEL_PLANNER_PROMPT } from '../prompts/travelPlanner.js';
 import { generateMockPlan } from './mockPlanner.js';
+import { generateBailianPlan } from './bailianPlanner.js';
 
 let client;
 
@@ -19,6 +20,7 @@ function getClient() {
 
 export async function generateTravelPlan(message, previousPlan) {
   if (config.aiProvider === 'mock') return generateMockPlan(message, previousPlan);
+  if (config.aiProvider === 'bailian') return generateBailianPlan(message, previousPlan);
   const response = await getClient().responses.parse({
     model: config.openAiModel,
     instructions: TRAVEL_PLANNER_PROMPT,
